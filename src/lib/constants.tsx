@@ -75,3 +75,41 @@ export const courseTableRows = [
     status: 'aktif',
   },
 ];
+
+export const profileItems = [
+  {
+    id: 'nim',
+    label: 'NIM',
+    placeholder: 'Masukkan email',
+    value: 'F1B017066',
+    disabled: true,
+  },
+  {
+    id: 'email',
+    label: 'Email',
+    placeholder: 'Masukkan email',
+    value: '',
+    disabled: false,
+  },
+  {
+    id: 'ktp',
+    label: 'NIK',
+    placeholder: 'Masukkan NIK',
+    value: '',
+    disabled: false,
+  },
+  {
+    id: 'phone',
+    label: 'No. HP',
+    placeholder: 'Masukkan No. Hp',
+    value: '',
+    disabled: false,
+  },
+  {
+    id: 'address',
+    label: 'Alamat',
+    placeholder: 'Masukkan Alamat',
+    value: '',
+    disabled: false,
+  },
+];
