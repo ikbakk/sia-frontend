@@ -24,7 +24,12 @@ const Sidebar = ({}: SidebarProps) => {
       <div className='w-full'>
         {sidebarItems.map((item) => {
           return (
-            <SidebarItem key={item.id} title={item.title} icon={item.icon} />
+            <SidebarItem
+              key={item.id}
+              href={item.href}
+              title={item.title}
+              icon={item.icon}
+            />
           );
         })}
       </div>

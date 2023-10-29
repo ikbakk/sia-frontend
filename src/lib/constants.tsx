@@ -1,12 +1,12 @@
 import { MdOutlineSpaceDashboard } from 'react-icons/md';
-import { BsPerson, BsDiagram3 } from 'react-icons/bs';
-import { GrScorecard } from 'react-icons/gr';
+import { BsPerson, BsDiagram3, BsClipboard } from 'react-icons/bs';
 import { FiBookOpen } from 'react-icons/fi';
 
 type SidebarItem = {
   id: number;
   title: string;
   icon: React.ReactNode;
+  href: string;
 };
 
 export const sidebarItems: SidebarItem[] = [
@@ -14,26 +14,31 @@ export const sidebarItems: SidebarItem[] = [
     id: 1,
     title: 'Dashboard',
     icon: <MdOutlineSpaceDashboard size={24} />,
+    href: '/mahasiswa',
   },
   {
     id: 2,
-    title: 'Mahasiswa',
+    title: 'Profile',
     icon: <BsPerson size={24} />,
+    href: '/mahasiswa/profile',
   },
   {
     id: 3,
     title: 'Nilai',
-    icon: <GrScorecard size={24} />,
+    icon: <BsClipboard size={24} />,
+    href: '/mahasiswa/nilai',
   },
   {
     id: 4,
     title: 'KRS',
     icon: <BsDiagram3 size={24} />,
+    href: '/mahasiswa/krs',
   },
   {
     id: 5,
     title: 'Mata Kuliah',
     icon: <FiBookOpen size={24} />,
+    href: '/mahasiswa/matakuliah',
   },
 ];
 
