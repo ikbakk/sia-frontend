@@ -18,11 +18,11 @@ type LayoutMahasiswaProps = {
 const LayoutMahasiswa = ({ children }: LayoutMahasiswaProps) => {
   return (
     <body className={cn(inter.className, 'bg-background')}>
-      <main className='flex  h-screen w-full gap-1'>
-        <aside className='w-[10%]'>
+      <main className='mx-auto flex h-screen max-w-[90rem] gap-1'>
+        <aside className='w-[10%] lg:w-[20%]'>
           <Sidebar />
         </aside>
-        <section className='w-[90%]'>
+        <section className='w-[90%] lg:w-[80%]'>
           <Header name='M Fikri' semester={9} />
           {children}
         </section>
