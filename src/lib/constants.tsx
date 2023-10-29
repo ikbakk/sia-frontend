@@ -36,3 +36,42 @@ export const sidebarItems: SidebarItem[] = [
     icon: <FiBookOpen size={24} />,
   },
 ];
+
+export const courseCounts = [
+  {
+    id: 1,
+    title: 'Diambil',
+    count: 0,
+  },
+  {
+    id: 2,
+    title: 'Sudah Lulus',
+    count: 0,
+  },
+  {
+    id: 3,
+    title: 'Jumlah SKS',
+    count: 0,
+  },
+];
+
+export const courseTableRows = [
+  {
+    id: 1,
+    code: 'INV001',
+    name: 'bahan listrik',
+    sks: 2,
+    semester: 1,
+    sifat: 'wajib',
+    status: 'aktif',
+  },
+  {
+    id: 2,
+    code: 'INV002',
+    name: 'bahan listrik',
+    sks: 2,
+    semester: 1,
+    sifat: 'pilihan',
+    status: 'aktif',
+  },
+];
