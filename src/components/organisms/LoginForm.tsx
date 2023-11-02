@@ -12,62 +12,62 @@ const LoginForm = ({}: LoginFormProps) => {
   const router = useRouter();
   const [loginData, setLoginData] = useState({
     nim: '',
-    password: ''
+    password: '',
   });
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleClick = async () => {
+  const handleClick = async (e: React.FormEvent) => {
     try {
+      e.preventDefault();
       setIsLoading(true);
+
       const res = await axios.post(
         'http://localhost:3333/api/auth/students/signin',
         {
           studentID: loginData.nim,
-          password: loginData.password
+          password: loginData.password,
         },
         {
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          withCredentials: true
-        }
+          withCredentials: true,
+        },
       );
 
       if (res.status === 200) {
-        setIsLoading(false);
-        router.push('/');
+        router.push('/dashboard');
       }
 
-      if (res.status !== 200) {
-        setIsLoading(false);
-        alert('Login gagal');
-      }
+      setIsLoading(false);
     } catch (error) {
-      console.log(error);
+      setIsLoading(false);
+      alert('Id atau Password salah');
     }
   };
 
   return (
-    <div className='flex flex-col gap-4'>
+    <form onSubmit={(e) => handleClick(e)} className='flex flex-col gap-4'>
       <Input
         id='nim'
         placeholder='Nomor induk mahasiswa'
         value={loginData.nim}
-        onChange={e => setLoginData({ ...loginData, nim: e.target.value })}
+        onChange={(e) => setLoginData({ ...loginData, nim: e.target.value })}
         type='text'
+        required
       />
       <Input
         id='password'
         placeholder='Password'
         value={loginData.password}
-        onChange={e => setLoginData({ ...loginData, password: e.target.value })}
+        onChange={(e) =>
+          setLoginData({ ...loginData, password: e.target.value })
+        }
         type='password'
+        required
       />
 
-      <Button disabled={isLoading} onClick={handleClick}>
+      <Button type='submit' disabled={isLoading}>
         Submit
       </Button>
-    </div>
+    </form>
   );
 };
 
