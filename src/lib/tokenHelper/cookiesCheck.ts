@@ -5,7 +5,7 @@ export default function cookiesCheck() {
   const token = cookieStore.get('token')?.value;
 
   if (!token) {
-    return false;
+    return '';
   }
 
   return token;
