@@ -7,7 +7,7 @@ export const isAuthenticated = async (): Promise<Student | undefined> => {
   try {
     const token = cookiesCheck();
     const studentID = extractStudentID(token);
-    const student = await getItems<Student>(`students/${studentID}`, token);
+    const student = await getItems<Student>(`students/${studentID}`);
 
     return student.data;
   } catch (error: AxiosError | unknown) {

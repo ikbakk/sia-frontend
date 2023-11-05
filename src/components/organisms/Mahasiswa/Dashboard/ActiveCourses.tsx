@@ -9,11 +9,13 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { courseTableRows } from '@/lib/constants';
+import { EnrolledCourse } from '../../../../types/Courses';
 
-type ActiveCoursesProps = {};
+type ActiveCoursesProps = {
+  enrolledCourses: EnrolledCourse[];
+};
 
-const ActiveCourses = ({}: ActiveCoursesProps) => {
+const ActiveCourses = ({ enrolledCourses }: ActiveCoursesProps) => {
   return (
     <Card>
       <CardHeader>
@@ -30,16 +32,16 @@ const ActiveCourses = ({}: ActiveCoursesProps) => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {courseTableRows.map((item) => {
+            {enrolledCourses.map((item) => {
               return (
                 <CourseTableRow
                   key={item.id}
                   code={item.code}
                   name={item.name}
                   semester={item.semester}
-                  sifat={item.sifat}
-                  sks={item.sks}
-                  status={item.status}
+                  sifat={item.type ? 'Wajib' : 'Pilihan'}
+                  sks={item.credit}
+                  status={item.available ? 'aktif' : 'tidak aktif'}
                 />
               );
             })}
