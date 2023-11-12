@@ -2,7 +2,7 @@ import NotAuthenticated from '@/components/templates/NotAuthenticated';
 
 type UnauthorizedPageProps = {};
 
-const UnauthorizedPage = ({}: UnauthorizedPageProps) => {
+const UnauthorizedPage = async ({}: UnauthorizedPageProps) => {
   return <NotAuthenticated />;
 };
 

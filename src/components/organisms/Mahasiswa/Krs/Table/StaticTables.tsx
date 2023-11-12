@@ -1,3 +1,5 @@
+'use client';
+
 import CourseTableRow from '@/components/molecules/Mahasiswa/Dashboard/CourseTableRow';
 import {
   Table,
@@ -8,14 +10,16 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { EnrolledCourse } from '@/types/Courses';
 
-type StaticTablesProps = {
-  courseDetail: EnrolledCourse[];
-  sksTotal: number;
-};
+import { useContext, useEffect } from 'react';
+import { KrsContext } from '@/contexts/KrsContext';
 
-const StaticTables = ({ courseDetail, sksTotal }: StaticTablesProps) => {
+const StaticTables = () => {
+  const { krsDetail } = useContext(KrsContext);
+  const sksTotal = krsDetail.data.courses
+    .map((c) => c.credit)
+    .reduce((a, b) => a + b, 0);
+
   return (
     <Table>
       <TableCaption>Daftar mata kuliah aktif anda.</TableCaption>
@@ -30,7 +34,7 @@ const StaticTables = ({ courseDetail, sksTotal }: StaticTablesProps) => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {courseDetail.map((item) => {
+        {krsDetail.data.courses.map((item) => {
           return (
             <CourseTableRow
               key={item.id}

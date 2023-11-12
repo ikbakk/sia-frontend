@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import {
   Table,
   TableBody,
@@ -9,6 +8,11 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { columns } from './Columns';
+import HeaderTable from './HeaderTable';
+import { Button } from '@/components/ui/button';
+
+import { useContext, useEffect, useState } from 'react';
 import {
   ColumnFiltersState,
   SortingState,
@@ -20,16 +24,27 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { columns } from './Columns';
+
 import { EnrolledCourse } from '@/types/Courses';
+import { KrsContext } from '@/contexts/KrsContext';
 
 type DataTableProps = {
   data: EnrolledCourse[];
+  onYear: 'GENAP' | 'GANJIL';
+  studentID: string;
+  token: string;
 };
 
-export function DataTableDemo({ data }: DataTableProps) {
+export type NewKrsType = {
+  onYear: 'GENAP' | 'GANJIL';
+  semester: number;
+  studentID: string;
+  courses: string[];
+};
+
+export function DataTableDemo({ data, onYear }: DataTableProps) {
+  const { addNewKrs } = useContext(KrsContext);
+  const [newSemester, setNewSemester] = useState<number>(1);
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
@@ -54,18 +69,23 @@ export function DataTableDemo({ data }: DataTableProps) {
     },
   });
 
+  const handleSubmit = () => {
+    addNewKrs.mutate({
+      onYear,
+      courses: table.getSelectedRowModel().rows.map((row) => row.original.id),
+      semester: newSemester,
+    });
+  };
+
   return (
     <div className='w-full'>
-      <div className='flex items-center py-4'>
-        <Input
-          placeholder='Cari mata kuliah'
-          value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
-          onChange={(event) =>
-            table.getColumn('name')?.setFilterValue(event.target.value)
-          }
-          className='max-w-sm'
-        />
-      </div>
+      <HeaderTable
+        inputValue={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
+        inputOnChange={(event) =>
+          table.getColumn('name')?.setFilterValue(event.target.value)
+        }
+        setNewSemester={setNewSemester}
+      />
       <div className='rounded-md border'>
         <Table>
           <TableHeader>
@@ -122,12 +142,9 @@ export function DataTableDemo({ data }: DataTableProps) {
         </div>
         <div>
           <Button
+            disabled={addNewKrs.isPending}
             variant='outline'
-            onClick={() =>
-              console.log(
-                table.getSelectedRowModel().rows.map((row) => row.original),
-              )
-            }
+            onClick={() => handleSubmit()}
           >
             Ajukan
           </Button>
