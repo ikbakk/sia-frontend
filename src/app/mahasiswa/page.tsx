@@ -8,20 +8,21 @@ import { EnrolledCourse } from '@/types/Courses';
 import { SuccessResponse } from '@/types/SuccessResponse';
 
 type MahasiswaPageProps = {};
-type EnrolledCourses = SuccessResponse<EnrolledCourse[]>;
+type EnrolledCoursesRes = SuccessResponse<EnrolledCourse[]>;
+type CompletedCoursesRes = SuccessResponse<EnrolledCourse[]>;
 
 const MahasiswaPage = async ({}: MahasiswaPageProps) => {
   const student = await isAuthenticated();
   const coursesRoute = (type: string) => {
     return `students/${student!.studentID}/courses/${type}`;
   };
-  const { data: enrolledCourses } = await getItems<EnrolledCourses>(
+  const enrolledCourses: EnrolledCoursesRes = await getItems(
     coursesRoute('active'),
-  );
+  ).then((res) => res.json());
 
-  const { data: completedCourses } = await getItems<EnrolledCourses>(
+  const completedCourses: CompletedCoursesRes = await getItems(
     coursesRoute('completed'),
-  );
+  ).then((res) => res.json());
 
   return (
     <div className='flex h-full flex-col gap-4 p-4'>

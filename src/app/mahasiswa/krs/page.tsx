@@ -16,11 +16,15 @@ type CourseRes = SuccessResponse<EnrolledCourse[]>;
 const KrsPage = async ({}: KrsPageProps) => {
   const token = cookiesCheck();
   const studentID = extractStudentID(token);
-  const courseRoute = 'courses';
-  const { data: courses } = await getItems<CourseRes>(courseRoute);
-  const { data: krsList } = await getItems<KrsRes>(`krs/${studentID}`);
-  const { data: krsDetails } = await getItems<KrsDetailedRes>(
-    `krs/${studentID}/1`,
+
+  const courses: CourseRes = await getItems('courses').then((res) =>
+    res.json(),
+  );
+  const krsList: KrsRes = await getItems(`krs/${studentID}`).then((res) =>
+    res.json(),
+  );
+  const krsDetails: KrsDetailedRes = await getItems(`krs/${studentID}/1`).then(
+    (res) => res.json(),
   );
 
   return (
