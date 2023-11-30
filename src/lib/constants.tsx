@@ -34,12 +34,12 @@ export const sidebarItems: SidebarItem[] = [
     icon: <BsDiagram3 size={24} />,
     href: '/mahasiswa/krs',
   },
-  {
-    id: 5,
-    title: 'Mata Kuliah',
-    icon: <FiBookOpen size={24} />,
-    href: '/mahasiswa/matakuliah',
-  },
+  // {
+  //   id: 5,
+  //   title: 'Mata Kuliah',
+  //   icon: <FiBookOpen size={24} />,
+  //   href: '/mahasiswa/matakuliah',
+  // },
 ];
 
 export const courseCounts = [

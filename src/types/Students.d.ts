@@ -10,5 +10,7 @@ export type Student = {
   enrolledCoursesIDs: string[];
   gradesIDs: string[];
   semester: number;
+  faculty: string;
+  major: string;
   createdAt: string;
 };

@@ -6,7 +6,7 @@ export default async function HomePage() {
   const student = await isAuthenticated();
 
   if (student) {
-    redirect('/dashboard');
+    redirect('/mahasiswa');
   }
 
   return (

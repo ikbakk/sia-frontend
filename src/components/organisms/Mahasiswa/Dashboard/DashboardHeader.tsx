@@ -7,11 +7,20 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 
-type DashboardHeaderProps = {};
+import dateNow from '@/lib/dateNow';
+import { Student } from '@/types/Students';
 
-const DashboardHeader = ({}: DashboardHeaderProps) => {
-  const date = new Date();
-  const now = date.toLocaleDateString();
+type DashboardHeaderProps = Partial<Student> & {};
+
+const DashboardHeader = ({
+  firstName,
+  lastName,
+  studentID,
+  faculty,
+  major,
+}: DashboardHeaderProps) => {
+  const now = dateNow();
+
   return (
     <Card className='flex justify-between bg-primary/80 dark:bg-primary/60'>
       <div>
@@ -19,7 +28,7 @@ const DashboardHeader = ({}: DashboardHeaderProps) => {
           <CardDescription className='text-accent-foreground'>
             Selamat datang!
           </CardDescription>
-          <CardTitle>User</CardTitle>
+          <CardTitle className='capitalize'>{`${firstName} ${lastName}`}</CardTitle>
         </CardHeader>
         <CardContent>
           <CardDescription className='text-accent-foreground'>
@@ -30,19 +39,19 @@ const DashboardHeader = ({}: DashboardHeaderProps) => {
           </CardDescription>
         </CardContent>
       </div>
-      <div className='flex flex-col items-end text-right'>
+      <div className='flex flex-col items-end justify-between text-right'>
         <CardHeader>
           <CardDescription className='text-accent-foreground'>
             {now}
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <CardTitle>Fakultas Teknik</CardTitle>
-          <CardDescription className='text-accent-foreground'>
-            Jurusan Teknik Elektro
+          <CardTitle className='capitalize'>Fakultas {faculty}</CardTitle>
+          <CardDescription className='capitalize text-accent-foreground'>
+            Jurusan {major}
           </CardDescription>
           <CardDescription className='text-accent-foreground'>
-            F1B017066
+            {studentID}
           </CardDescription>
         </CardContent>
       </div>

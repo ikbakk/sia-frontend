@@ -1,44 +1,6 @@
 import LoginForm from '@/components/organisms/LoginForm';
 
-import cookiesCheck from '@/lib/tokenHelper/cookiesCheck';
-import tokenCheck from '@/lib/tokenHelper/tokenCheck';
-import { redirect } from 'next/navigation';
-import roleCheck from '@/lib/tokenHelper/extractStudentID';
-import axios from 'axios';
-import { cookies } from 'next/headers';
-
 export default async function LoginPage() {
-  // const cookieStore = cookies();
-  // const a = cookieStore.toString();
-  // console.log(a);
-  // const token = cookiesCheck();
-  // const url = 'http://localhost:3333/api/students/F1B017066';
-  // console.log(cookies().get('token')!.value);
-
-  // const res = await fetch(`http://localhost:3333/api/students/F1B017066`, {
-  //   cache: 'no-store',
-  //   headers: {
-
-  //   },
-  //   // next: {
-  //   //   revalidate: 0,
-  //   // },
-  // });
-  // const student = await res.json();
-  // console.log(student);
-
-  // try {
-  //   const student = await axios.get(url, {
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     withCredentials: true,
-  //   });
-  //   console.log(student.data);
-  // } catch (error) {
-  //   console.log(error);
-  // }
-
   return (
     <div className='flex h-screen w-full flex-col items-center justify-center md:flex-row'>
       <div className='relative hidden h-full w-full flex-col bg-muted p-10 text-white dark:border-r md:flex'>

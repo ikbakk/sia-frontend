@@ -8,6 +8,8 @@ import { Button } from '@/components/ui/button';
 
 type LoginFormProps = {};
 
+const baseUrl = process.env.NEXT_PUBLIC_BASEURL;
+
 const LoginForm = ({}: LoginFormProps) => {
   const router = useRouter();
   const [loginData, setLoginData] = useState({
@@ -22,7 +24,7 @@ const LoginForm = ({}: LoginFormProps) => {
       setIsLoading(true);
 
       const res = await axios.post(
-        'http://localhost:3333/api/auth/students/signin',
+        `${baseUrl}/api/auth/students/signin`,
         {
           studentID: loginData.nim,
           password: loginData.password,
@@ -33,7 +35,7 @@ const LoginForm = ({}: LoginFormProps) => {
       );
 
       if (res.status === 200) {
-        router.push('/dashboard');
+        router.push('/mahasiswa');
       }
 
       setIsLoading(false);
