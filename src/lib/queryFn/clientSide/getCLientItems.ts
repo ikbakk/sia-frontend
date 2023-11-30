@@ -7,6 +7,7 @@ export async function getClientItems<T>(route: string, token: string) {
     headers: {
       Authorization: `Bearer ${token}`,
     },
+    withCredentials: true,
   });
 
   return res;

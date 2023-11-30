@@ -21,6 +21,7 @@ export async function getItems(route: string) {
     headers: {
       Authorization: `Bearer ${token}`,
     },
+    credentials: 'include',
   });
 
   return res;

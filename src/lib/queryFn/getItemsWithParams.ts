@@ -13,6 +13,7 @@ export async function getItemsWithParams<T>(
       Authorization: `Bearer ${token}`,
     },
     params,
+    withCredentials: true,
   });
 
   return res;

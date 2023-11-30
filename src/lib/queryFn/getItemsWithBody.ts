@@ -13,6 +13,7 @@ export async function getItemsWithBody<T>(
       Authorization: `Bearer ${token}`,
     },
     data,
+    withCredentials: true,
   });
 
   return res;
