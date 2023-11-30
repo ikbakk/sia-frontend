@@ -18,7 +18,7 @@ export default async function RootLayout({
   const student = await isAuthenticated();
 
   if (!student) {
-    redirect('/unauthenticated');
+    redirect('/unauthorized');
   }
   const name = `${student.firstName} ${student.lastName}`;
 
