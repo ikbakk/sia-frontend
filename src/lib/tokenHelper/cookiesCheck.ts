@@ -7,6 +7,5 @@ export default function cookiesCheck() {
   if (!token) {
     return '';
   }
-
   return token;
 }

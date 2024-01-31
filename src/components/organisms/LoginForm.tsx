@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { signIn } from '@/lib/actions/auth';
 
 type LoginFormProps = {};
 
@@ -23,19 +24,13 @@ const LoginForm = ({}: LoginFormProps) => {
       e.preventDefault();
       setIsLoading(true);
 
-      const res = await axios.post(
-        `${baseUrl}/api/auth/students/signin`,
-        {
-          studentID: loginData.nim,
-          password: loginData.password,
-        },
-        {
-          withCredentials: true,
-        },
-      );
+      const res = await axios.post(`/api/auth/login`, {
+        studentID: loginData.nim,
+        password: loginData.password,
+      });
 
       if (res.status === 200) {
-        router.push('/mahasiswa');
+        router.push('/');
       }
 
       setIsLoading(false);
@@ -46,7 +41,11 @@ const LoginForm = ({}: LoginFormProps) => {
   };
 
   return (
-    <form onSubmit={(e) => handleClick(e)} className='flex flex-col gap-4'>
+    <form
+      onSubmit={(e) => handleClick(e)}
+      // action={async (formData: FormData) => await signIn(formData)}
+      className='flex flex-col gap-4'
+    >
       <Input
         id='nim'
         placeholder='Nomor induk mahasiswa'

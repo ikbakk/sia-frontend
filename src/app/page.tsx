@@ -1,5 +1,6 @@
 import LoginForm from '@/components/organisms/LoginForm';
 import { isAuthenticated } from '@/lib/isAuthenticated';
+import { cookiesCheck } from '@/lib/tokenHelper';
 import { redirect } from 'next/navigation';
 
 export default async function HomePage() {
